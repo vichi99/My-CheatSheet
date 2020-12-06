@@ -66,6 +66,10 @@ $ sudo apt install zsh
 - Linux: ~/.[zshrc](zshrc)
 - MacOS: /etc/[zshrc](zshrc)$$
 
+# Install Pyenv
+- install by [this link](https://github.com/pyenv/pyenv#homebrew-on-macos)
+- and [pyenv virtualenv](https://github.com/pyenv/pyenv-virtualenv)
+- keep in mind install for MacOs and fish is little different.
 
 
 
