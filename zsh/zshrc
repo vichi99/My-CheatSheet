@@ -5,7 +5,12 @@ case `uname` in
   Darwin)
     # commands for OS X
     # Default prompt
-    PS1='%F{green}%n@%m%f:%F{blue}%~$%f '
+    # PS1='%F{green}%n@%m%f:%F{blue}%~$%f ' 
+    ##################
+    # Loading git prompt
+    # Colors https://medium.com/dev-genius/customize-the-macos-terminal-zsh-4cb387e4f447
+    PS1='%F{green}%n@%m%f:%F{blue}%~%F{cyan}${vcs_info_msg_0_}%F{blue}$%f '
+    ##################
     alias ls='CLICOLOR_FORCE=1 ls -G'
     # nano from homebrew
     alias nano='/usr/local/bin/nano'
@@ -13,7 +18,11 @@ case `uname` in
   Linux)
     # commands for Linux
     # Default prompt - color codes - https://jonasjacek.github.io/colors/
-    PS1='%F{76}%n@%m%f:%F{74}%~$%f '
+    # PS1='%F{76}%n@%m%f:%F{74}%~$%f '
+    ##################
+    # Loading git prompt
+    PS1='%F{76}%n@%m%f:%F{74}%~%F{cyan}${vcs_info_msg_0_}%F{74}$%f '
+    ##################
     alias ls='ls --color=always'
     # Permissions
     umask 0002
@@ -63,3 +72,44 @@ if exists percol; then
     bindkey '^R' percol_select_history
 fi
 
+# PYENV ->
+# Define environment variable PYENV_ROOT
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+# Enable shims and autocompletion
+if command -v pyenv 1>/dev/null 2>&1;then
+  eval "$(pyenv init -)"
+fi
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+# Load Git branch
+autoload -Uz vcs_info
+# Show git branch only in git directory, otherwise show nothing
+# This function is executed before each prompt
+# precmd() { vcs_info } added to elapsed time section 
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '[%b]'
+
+# Allow substitutions in prompt
+setopt PROMPT_SUBST
+
+# elapsed time by
+# https://gist.github.com/knadh/123bca5cfdae8645db750bfb49cb44b0#file-zsh-elapsed-time-md
+function preexec() {
+  timer=$(($(print -P %D{%s%6.})/1000))
+}
+
+function precmd() {
+  vcs_info # added from load git branch section
+  if [ $timer ]; then
+    now=$(($(print -P %D{%s%6.})/1000))
+    elapsed=$(($now-$timer))
+
+    export RPROMPT="%F{cyan}${elapsed}ms %{$reset_color%}"
+    unset timer
+  fi
+}

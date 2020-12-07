@@ -26,7 +26,7 @@ $ chsh -s /bin/zsh
 - My custom fish prompt
     ```sh
     # Run script
-    . set_fish.sh
+    bash set_fish.sh
     # or do it manually
     $ cp fish/config.fish ~/.config/fish/
     $ mkdir ~/.config/fish/conf.d/
@@ -60,6 +60,7 @@ $ brew install nano
 NOTE: on Linux, it is necessary to install zsh 
 ```
 $ sudo apt install zsh
+$ bash set_zsh.sh
 ```
 
 ## Location of `zshrc`
@@ -67,6 +68,11 @@ $ sudo apt install zsh
 - MacOS: /etc/[zshrc](zshrc)$$
 
 # Install Pyenv
+## Linux
+```
+$ curl https://pyenv.run | bash
+```
+## MacOs
 - install by [this link](https://github.com/pyenv/pyenv#homebrew-on-macos)
 - and [pyenv virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 - keep in mind install for MacOs and fish is little different.
