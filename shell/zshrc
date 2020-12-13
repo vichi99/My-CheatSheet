@@ -1,0 +1,78 @@
+# zshrc config oh-my-zsh file for UNIX and MacOS, Jan Valosek && Jan Vicha
+export TIMER_FORMAT='[%d]'
+export TIMER_PRECISION=2
+
+# Keep 5000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=5000
+SAVEHIST=5000
+HISTFILE=~/.zsh_history
+# turn off find duplicate via ctrl + r
+setopt HIST_FIND_NO_DUPS
+# turn off save duplicate to history
+setopt HIST_IGNORE_ALL_DUPS
+
+# following should be turned off, if sharing history via setopt SHARE_HISTORY
+# Immediate append Setting the inc_append_history option ensures that
+# commands are added to the history immediately (otherwise, this would
+# happen only when the shell exits, and you could lose history upon
+# unexpected/unclean termination of the shell).
+setopt INC_APPEND_HISTORY
+
+
+# https://www.soberkoder.com/better-zsh-history/
+# OS specific commands are in case below
+case `uname` in
+  Darwin)
+    ##################
+    alias ls='CLICOLOR_FORCE=1 ls -G'
+    alias ll='ls -lathG'
+    # nano from homebrew
+    alias nano='/usr/local/bin/nano'
+    bindkey '^[[3~' delete-char
+  ;;
+  Linux)
+    # commands for Linux
+    # Default prompt - color codes - https://jonasjacek.github.io/colors/
+    # PS1='%F{76}%n@%m%f:%F{74}%~$%f '
+    alias ls='ls --color=always'
+    alias ll='ls -lath --color=auto'
+    # Allow moving between words in zsh command using ctrl + left_arrow and ctrl + right_arrow
+    # (on MacOS, moving can be done by option + left_arrow or right_arrow)
+    bindkey -e
+    bindkey '^[[1;5C' forward-word
+    bindkey '^[[1;5D' backward-word
+    # Permissions
+    umask 0002
+  ;;
+esac
+
+alias lh='ls -lath | head -10'
+alias lt='ls -lath | tail -10'
+alias grep='grep --color=always'
+
+# count items in directory
+alias countf='ls -1 $1 | wc -l'
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+# Uncomment the following line to enable command auto-correction
+setopt correct
+
+# Auto cd
+setopt autocd
+
+# Shared history between terminals
+setopt sharehistory
+# History substitution (replacement of !!)
+setopt HIST_VERIFY
+
+# Case insensitive globbing
+setopt NO_CASE_GLOB
+
+# Allow substitutions in prompt
+setopt PROMPT_SUBST
+
+# Disable globbing - https://unix.stackexchange.com/a/310553
+setopt +o nomatch
