@@ -1,4 +1,6 @@
 # zshrc config oh-my-zsh file for UNIX and MacOS, Jan Valosek && Jan Vicha
+
+# Timer format for oh-my-zsh plugin
 export TIMER_FORMAT='[%d]'
 export TIMER_PRECISION=2
 
@@ -32,8 +34,6 @@ case `uname` in
   ;;
   Linux)
     # commands for Linux
-    # Default prompt - color codes - https://jonasjacek.github.io/colors/
-    # PS1='%F{76}%n@%m%f:%F{74}%~$%f '
     alias ls='ls --color=always'
     alias ll='ls -lath --color=auto'
     # Allow moving between words in zsh command using ctrl + left_arrow and ctrl + right_arrow
@@ -46,16 +46,36 @@ case `uname` in
   ;;
 esac
 
-alias lh='ls -lath | head -10'
-alias lt='ls -lath | tail -10'
+# aliases
 alias grep='grep --color=always'
-
+function lh { if [ "$#" -eq 0 ];then num=10;else num=${1};fi; ls -lath | head -${num} }
+function lt { if [ "$#" -eq 0 ];then num=10;else num=${1};fi; ls -lath | tail -${num} }
 # count items in directory
 alias countf='ls -1 $1 | wc -l'
 
+
+# Speed up pasting into zsh terminal
+# https://github.com/zsh-users/zsh-autosuggestions/issues/238#issuecomment-389324292
+# https://github.com/zsh-users/zsh-autosuggestions/issues/238
+pasteinit() {
+  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
+  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
+}
+
+pastefinish() {
+  zle -N self-insert $OLD_SELF_INSERT
+}
+zstyle :bracketed-paste-magic paste-init pasteinit
+zstyle :bracketed-paste-magic paste-finish pastefinish
+
 # Use modern completion system
 autoload -Uz compinit
-compinit
+if [ "$(whoami)" = "REPLACE_this_by_USER" ]; then
+  compinit -i # Ignore insecure directories
+else
+  compinit
+fi
+
 
 # Uncomment the following line to enable command auto-correction
 setopt correct
