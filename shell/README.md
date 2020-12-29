@@ -12,11 +12,11 @@ NOTE: on MacOS, it is necessary to install nano from homebrew.
 $ brew install nano
 ```
 
-## Location of [nanorc](nanorc) 
+- Copy [nanorc](nanorc) to: 
 
-- Linux: ~/.nanorc
+    - Linux: ~/.nanorc
 
-- MacOS: ~/.nanorc
+    - MacOS: ~/.nanorc
 
 # Set zsh shell
 - I am using [oh-my-zsh](https://ohmyz.sh/)
@@ -41,5 +41,8 @@ $ curl https://pyenv.run | bash
 - and [pyenv virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 - keep in mind install for MacOs and fish is little different.
 
-
+# Vim editor syntax on
+```
+$ echo "syntax on" >> ~/.vimrc    
+```
 

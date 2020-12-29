@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 #####################################
 # Shell script will install oh-my-zsh and set by my custom settings.
 # Modify ~/.zshrc file and copy own to ~/.zshrc_my
@@ -35,7 +35,7 @@ elif [ ${install_oh_my_zsh} == "n" ]
   then
     echo -e "\t${GREEN}1/${COUNT_PROCESS} You selected not install oh-my-zsh${NC}"
 else
-    echo -e "\t${RED}1/${COUNT_PROCESS} Bad argument for install oh-my-zsh${NC} -> continue ..." || \
+    echo -e "\t${RED}1/${COUNT_PROCESS} Bad argument for install oh-my-zsh${NC} -> continue ..."
 fi
 ((ACTUAL_PROCESS+=1))
 
@@ -94,11 +94,21 @@ cp shell/zshrc ~/.zshrc_my && \
 #### add source for my zshrc to ~/.zshrc
 ######################################
 echo -e "Starting... ${GREEN}${ACTUAL_PROCESS}/${COUNT_PROCESS} Ensure adding source path to ~/.zshrc for custom zshrc_my${NC}"
-if [ $(grep -c "source ~/.zshrc_my" ~/.zshrc) == 0 ];then echo "\nsource ~/.zshrc_my\n" >> ~/.zshrc;fi &&
+if [ $(grep -c "source ~/.zshrc_my" ~/.zshrc) == 0 ];then echo -e "\nsource ~/.zshrc_my\n" >> ~/.zshrc;fi &&
   echo -e "\t${GREEN}${ACTUAL_PROCESS}/${COUNT_PROCESS} Ensure added source path to ~/.zshrc for custom zshrc_my${NC}"
 ((ACTUAL_PROCESS+=1))
 
 
+######################################
+#### add ZSH_DISABLE_COMPFIX to start of ~/.zshrc
+######################################
+echo -e "Starting... ${GREEN}${ACTUAL_PROCESS}/${COUNT_PROCESS} Ensure adding ZSH_DISABLE_COMPFIX=true to ~/.zshrc to 1. line for custom zshrc_my${NC}"
+if [ $(egrep -c "^ZSH_DISABLE_COMPFIX" ~/.zshrc) == 0 ];
+  then echo -e "ZSH_DISABLE_COMPFIX=true\n" | cat - ~/.zshrc > temp && mv temp ~/.zshrc;fi &&
+  echo -e "\t${GREEN}${ACTUAL_PROCESS}/${COUNT_PROCESS} Ensure added ZSH_DISABLE_COMPFIX=true to ~/.zshrc to 1. line for custom zshrc_my${NC}"
+((ACTUAL_PROCESS+=1))
+
+
 #### Info
-echo "\n${RED}Do not forget on install (sudo)-> pip3 install percol${NC}"
+echo -e "\n${RED}Do not forget on install (sudo)-> pip3 install percol${NC}"
 echo -e "${GREEN}Please reload shell source ~/.zshrc"
