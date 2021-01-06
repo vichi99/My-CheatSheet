@@ -37,6 +37,9 @@ case `uname` in
     # https://github.com/pyenv/pyenv/issues/1746
     export LDFLAGS="-L/usr/local/opt/zlib/lib"
     export CPPFLAGS="-I/usr/local/opt/zlib/include"
+    # alias for sudo root with oh-my-zsh
+    # https://github.com/ohmyzsh/ohmyzsh/issues/5311
+    alias suroot='sudo -E -s'
   ;;
   Linux)
     # commands for Linux
