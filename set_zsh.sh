@@ -14,7 +14,7 @@
 RED="\033[0;31m"
 GREEN="\033[0;32m"
 NC="\033[0m" # No Color
-COUNT_PROCESS=7
+COUNT_PROCESS=9
 ACTUAL_PROCESS=1
 ZSH_THEME="candy"
 
@@ -108,7 +108,16 @@ if [ $(egrep -c "^ZSH_DISABLE_COMPFIX" ~/.zshrc) == 0 ];
   echo -e "\t${GREEN}${ACTUAL_PROCESS}/${COUNT_PROCESS} Ensure added ZSH_DISABLE_COMPFIX=true to ~/.zshrc to 1. line for custom zshrc_my${NC}"
 ((ACTUAL_PROCESS+=1))
 
+######################################
+#### copy ~/.vimrc
+######################################
+echo -e "Starting... ${GREEN}${ACTUAL_PROCESS}/${COUNT_PROCESS} vimrc copy to ~/.vimrc${NC}"
+cp shell/vimrc ~/.vimrc && \
+  echo -e "\t${GREEN}${ACTUAL_PROCESS}/${COUNT_PROCESS} vimrc copied to ~/.vimrc${NC}" ||
+  echo -e "\t${RED}${ACTUAL_PROCESS}/${COUNT_PROCESS} vimrc Not copied to ~/.vimrc${NC}"
+((ACTUAL_PROCESS+=1))
+
 
 #### Info
-echo -e "\n${RED}Do not forget on install (sudo)-> pip3 install percol${NC}"
+echo -e "\n${RED}Do not forget on install (sudo)-> pip3 install percol and pyenv${NC}"
 echo -e "${GREEN}Please reload shell source ~/.zshrc"

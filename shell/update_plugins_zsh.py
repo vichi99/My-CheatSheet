@@ -20,9 +20,6 @@ ZSH_PLUGINS= """plugins=(
     git
     django
     docker
-    docker-compose
-    yarn
-    npm
     pyenv
     percol
     timer

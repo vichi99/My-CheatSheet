@@ -1,5 +1,5 @@
 # Set default shell
-```
+```sh
 $ chsh -s `which zsh`
 $ chsh -s /bin/zsh
 ...
@@ -8,7 +8,7 @@ $ chsh -s /bin/zsh
 
 # Set Nano editor
 NOTE: on MacOS, it is necessary to install nano from homebrew.
-```
+```sh
 $ brew install nano
 ```
 
@@ -33,16 +33,26 @@ $ bash set_zsh.sh
 
 # Install Pyenv
 ## Linux
-```
+```sh
 $ curl https://pyenv.run | bash
 ```
 ## MacOs
 - install by [this link](https://github.com/pyenv/pyenv#homebrew-on-macos)
 - and [pyenv virtualenv](https://github.com/pyenv/pyenv-virtualenv)
 - keep in mind install for MacOs and fish is little different.
+- [issue](https://github.com/pyenv/pyenv/issues/1746) for pyenv install on BigSur 
+    ```shell
+    $ brew install zlib
 
-# Vim editor syntax on
-```
+    # added to setings script
+    $ export LDFLAGS="-L/usr/local/opt/zlib/lib" 
+    $ export CPPFLAGS="-I/usr/local/opt/zlib/include"
+    ```
+
+# Vim editor syntax on and ruler
+This will be set with `set_zsh.sh` script.
+```sh
 $ echo "syntax on" >> ~/.vimrc    
+$ echo "set ruler" >> ~/.vimrc    
 ```
 

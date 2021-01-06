@@ -4,9 +4,9 @@
 export TIMER_FORMAT='[%d]'
 export TIMER_PRECISION=2
 
-# Keep 5000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=5000
-SAVEHIST=5000
+# Keep 500 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=500
+SAVEHIST=500
 HISTFILE=~/.zsh_history
 # turn off find duplicate via ctrl + r
 setopt HIST_FIND_NO_DUPS
@@ -18,7 +18,7 @@ setopt HIST_IGNORE_ALL_DUPS
 # commands are added to the history immediately (otherwise, this would
 # happen only when the shell exits, and you could lose history upon
 # unexpected/unclean termination of the shell).
-setopt INC_APPEND_HISTORY
+# setopt INC_APPEND_HISTORY
 
 
 # https://www.soberkoder.com/better-zsh-history/
@@ -31,6 +31,12 @@ case `uname` in
     # nano from homebrew
     alias nano='/usr/local/bin/nano'
     bindkey '^[[3~' delete-char
+    #pyenv-virtualenv
+    eval "$(pyenv virtualenv-init -)"
+    # fix pyenv install for big sur
+    # https://github.com/pyenv/pyenv/issues/1746
+    export LDFLAGS="-L/usr/local/opt/zlib/lib"
+    export CPPFLAGS="-I/usr/local/opt/zlib/include"
   ;;
   Linux)
     # commands for Linux
@@ -43,6 +49,12 @@ case `uname` in
     bindkey '^[[1;5D' backward-word
     # Permissions
     umask 0002
+    #pyenv
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    #pyenv-virtualenv
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
   ;;
 esac
 
@@ -88,9 +100,17 @@ setopt HIST_VERIFY
 setopt NO_CASE_GLOB
 
 # Allow substitutions in prompt
+# https://stackoverflow.com/questions/50918160/make-prompt-only-display-directory-when-not-at-home/50932734#50932734
 setopt PROMPT_SUBST
 
 # Disable globbing - https://unix.stackexchange.com/a/310553
 setopt +o nomatch
 
 source $ZSH/oh-my-zsh.sh
+
+
+#pyenv
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
