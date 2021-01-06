@@ -70,11 +70,7 @@ zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # Use modern completion system
 autoload -Uz compinit
-if [ "$(whoami)" = "REPLACE_this_by_USER" ]; then
-  compinit -i # Ignore insecure directories
-else
-  compinit
-fi
+compinit -i # Ignore insecure directories
 
 
 # Uncomment the following line to enable command auto-correction
@@ -96,3 +92,5 @@ setopt PROMPT_SUBST
 
 # Disable globbing - https://unix.stackexchange.com/a/310553
 setopt +o nomatch
+
+source $ZSH/oh-my-zsh.sh
