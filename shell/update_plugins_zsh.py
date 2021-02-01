@@ -22,7 +22,6 @@ ZSH_PLUGINS= """plugins=(
     docker
     pyenv
     percol
-    timer
     zsh-syntax-highlighting
     zsh-autosuggestions
     )\n"""
