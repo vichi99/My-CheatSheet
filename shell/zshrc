@@ -1,9 +1,5 @@
 # zshrc config oh-my-zsh file for UNIX and MacOS, Jan Valosek && Jan Vicha
 
-# Timer format for oh-my-zsh plugin
-export TIMER_FORMAT='[%d]'
-export TIMER_PRECISION=2
-
 # Keep 500 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=500
 SAVEHIST=500
@@ -84,8 +80,8 @@ zstyle :bracketed-paste-magic paste-init pasteinit
 zstyle :bracketed-paste-magic paste-finish pastefinish
 
 # Use modern completion system
-autoload -Uz compinit
-compinit -i # Ignore insecure directories
+# autoload -Uz compinit
+# compinit -i # Ignore insecure directories
 
 
 # Uncomment the following line to enable command auto-correction
