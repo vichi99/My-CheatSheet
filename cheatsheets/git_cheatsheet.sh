@@ -25,6 +25,9 @@ git diff HEAD HEAD~2 -- file.py
 # view diff between commits
 git diff commit1 commit2 ; (--name-only will show only files) 
 
+# set output to terminal; not in vim
+git config --global pager.branch false 
+
 # autocomplete git on MAC - 6 lines below
 # https://medium.com/fusionqa/autocomplete-git-commands-and-branch-names-in-terminal-on-mac-os-x-4e0beac0388a
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash 
