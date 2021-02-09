@@ -30,7 +30,12 @@ if [ ${install_oh_my_zsh} == "y" ]
   echo -e "Starting... ${GREEN}1/${COUNT_PROCESS} oh my zsh install${NC}"
   sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
     echo -e "\t${GREEN}1/${COUNT_PROCESS} oh my zsh installed${NC}" || \
-    echo -e "\t${RED}1/${COUNT_PROCESS} oh my zsh Not installed, probably already exists${NC}"
+    echo -e "\t${RED}1/${COUNT_PROCESS} oh my zsh Not installed, probably already exists.
+  \tIf you are on Linux try:
+  \t\tapt-get install zsh
+  \t\tapt-get install git-core
+  \t\twget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+  \tsource: https://gist.github.com/tsabat/1498393${NC}" && return
 elif [ ${install_oh_my_zsh} == "n" ]
   then
     echo -e "\t${GREEN}1/${COUNT_PROCESS} You selected not install oh-my-zsh${NC}"
