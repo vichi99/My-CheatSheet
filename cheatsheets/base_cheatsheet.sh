@@ -13,3 +13,9 @@ sudo kill -9 PID
 
 # find word in file or folder
 grep -rIn magic_word ~/folder
+
+# find directory
+find . -type d -name "folder_name" 
+
+# find file
+find . -type f -name "file_name" 
