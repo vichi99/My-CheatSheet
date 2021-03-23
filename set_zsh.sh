@@ -5,7 +5,7 @@
 #
 # USAGE:
 #   use from current directory !
-#   . ./set_zsh.sh
+#   bash ./set_zsh.sh
 #####################################
 # Jan Vicha
 # 2020
@@ -22,6 +22,7 @@ ZSH_THEME="candy"
 ######################################
 #### install oh my zsh
 ######################################
+echo "Did you first install dependencies ?" 
 echo -n -e "Do you want install oh-my-zsh [y/n]:" 
 read install_oh_my_zsh
 
