@@ -7,6 +7,9 @@ netstat -av ; ip addr
 # port find available
 sudo lsof -i :8000 
 
+# port kill by pid
+kill -9 port
+
 # ssh conection
 sudo lsof -i -n | egrep '\<ssh\>'
 
