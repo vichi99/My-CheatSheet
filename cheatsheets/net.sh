@@ -15,3 +15,20 @@ sudo lsof -i -n | egrep '\<ssh\>'
 
 # ssh tunnel check if connected
 nc -z localhost 6000 || echo "no tunnel open"
+
+# sockets all
+ss -a
+
+# sockets udp
+ss -u -a
+cat /proc/net/udp
+
+# sockets tcp
+ss -t -a
+cat /proc/net/tcp
+
+# sockets raw
+cat /proc/net/raw
+
+# sockets summary
+ss -s
