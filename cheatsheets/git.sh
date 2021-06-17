@@ -28,6 +28,9 @@ git diff commit1 commit2 ; (--name-only will show only files)
 # view only files of commit
 git show HEAD --name-only
 
+# view only staged diff
+git diff --cached
+
 # set output to terminal; not in vim
 git config --global pager.branch false 
 
