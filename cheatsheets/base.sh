@@ -19,3 +19,9 @@ find . -type d -name "folder_name"
 
 # find file
 find . -type f -name "file_name" 
+
+# Linux device / space
+lsblk
+sudo blkid
+sudo fdisk -l
+df

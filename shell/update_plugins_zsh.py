@@ -24,6 +24,7 @@ ZSH_PLUGINS= """plugins=(
     percol
     zsh-syntax-highlighting
     zsh-autosuggestions
+    ssh-agent
     )\n"""
 
 def update_plugins():
