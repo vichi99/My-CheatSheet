@@ -32,3 +32,6 @@ cat /proc/net/raw
 
 # sockets summary
 ss -s
+
+# show my ip
+curl ipecho.net/plain ; echo
