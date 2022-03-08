@@ -63,5 +63,17 @@ git push <remote> <new_name>
 ## Reset the upstream branch for the new_name local branch
 git push <remote> -u <new_name>
 
-## revert cherry-pick
+## revert cherry-pick / return to HEAD
 git reset --hard HEAD^
+
+## uncommiting to HEAD
+git reset --soft HEAD^
+
+## uncommiting to HEAD
+git reset --soft HEAD~1
+
+## remove staged(green) file from commit
+git reset HEAD <file>
+
+## use the “git rm” command in order to delete the file from the index (also called the staging area).
+git rm --cached <file>
