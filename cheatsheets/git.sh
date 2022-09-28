@@ -25,6 +25,9 @@ git diff HEAD HEAD~2 -- file.py
 # view diff between commits
 git diff commit1 commit2 ; (--name-only will show only files) 
 
+# view diff between last commits
+git diff HEAD^ 
+
 # view only files of commit
 git show HEAD --name-only
 
@@ -77,3 +80,12 @@ git reset HEAD <file>
 
 ## use the “git rm” command in order to delete the file from the index (also called the staging area).
 git rm --cached <file>
+
+# checkout file to head. If file is already pushed.
+git checkout HEAD^ -- /path/to/file
+
+# reset to origin master
+git reset --hard origin/master
+
+# reset commit files to unstage(green)
+git reset --soft HEAD^
